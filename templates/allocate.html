@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Splitter - Allocate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Mark Allocation</h1>
+
+    {% if exit %}
+    <p>Exiting allocation process. Thank you!</p>
+    {% else %}
+    <form method="POST">
+        <label for="total_marks">Total Marks:</label>
+        <input type="number" name="total_marks" id="total_marks" required>
+        <button type="submit">Allocate</button>
+    </form>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if marks %}
+    <h2>Allocated Marks</h2>
+    <ul>
+        {% for field_name, mark in marks.items() %}
+        <li>{{ field_name }}: {{ mark }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total Marks Allocated: {{ total_marks }}</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>

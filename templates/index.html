@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Splitter - Setup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Mark Splitter Setup</h1>
+    <form method="POST">
+        <label for="fields">Number of Fields:</label>
+        <input type="number" name="fields" id="fields" min="1" required>
+        <div id="fieldInputs"></div>
+        <button type="button" onclick="generateFields()">Generate Fields</button>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function generateFields() {
+            const fields = document.getElementById('fields').value;
+            const fieldInputs = document.getElementById('fieldInputs');
+            fieldInputs.innerHTML = '';
+            for (let i = 1; i <= fields; i++) {
+                fieldInputs.innerHTML += `
+                    <div>
+                        <label>Field ${i} Name:</label>
+                        <input type="text" name="field_name_${i}" required>
+                        <label>Min Marks:</label>
+                        <input type="number" name="min_mark_${i}" min="0" required>
+                        <label>Max Marks:</label>
+                        <input type="number" name="max_mark_${i}" min="0" required>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
